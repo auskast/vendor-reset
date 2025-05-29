@@ -67,20 +67,21 @@ Please keep in mind that vendor-reset can only fix the bug before it occurs, not
 
 ## Supported Devices
 
-| Vendor | Family | Common Name(s)
-|---|---|---|
-|AMD|Polaris 10| RX 470, 480, 570, 580, 590 |
-|AMD|Polaris 11| RX 460, 560 |
-|AMD|Polaris 12| RX 540, 550 |
-|AMD|Vega 10| Vega 56/64/FE |
-|AMD|Vega 20| Radeon VII |
-|AMD|Vega 20| Instinct MI100 |
-|AMD|Vega 20| 5700U Vega 8 |
-|AMD|Navi 10| 5600XT, 5700, 5700XT |
-|AMD|Navi 10| 780M Phoenix1 |
-|AMD|Navi 12| Pro 5600M |
-|AMD|Navi 14| Pro 5300, RX 5300, 5500XT |
-|AMD|Navi 23|Radeon RX 6600/6600 XT/6600M |
+| Vendor | Family     | Common Name(s)               |
+| ------ | ---------- | ---------------------------- |
+| AMD    | Polaris 10 | RX 470, 480, 570, 580, 590   |
+| AMD    | Polaris 11 | RX 460, 560                  |
+| AMD    | Polaris 12 | RX 540, 550                  |
+| AMD    | Vega 10    | Vega 56/64/FE                |
+| AMD    | Vega 20    | Radeon VII                   |
+| AMD    | Vega 20    | Instinct MI100               |
+| AMD    | Vega 20    | 5700U Vega 8                 |
+| AMD    | Vega 20    | 780M Phoenix3                |
+| AMD    | Navi 10    | 5600XT, 5700, 5700XT         |
+| AMD    | Navi 10    | 780M Phoenix1                |
+| AMD    | Navi 12    | Pro 5600M                    |
+| AMD    | Navi 14    | Pro 5300, RX 5300, 5500XT    |
+| AMD    | Navi 23    | Radeon RX 6600/6600 XT/6600M |
 
 ## Developing
 
@@ -96,17 +97,16 @@ If you answer yes to either of these questions this project is not for you.
 
 ## Usage with unsupported Devices
 
-Vendor-reset triggers only if your GPU's product ID matches the listed 
-devices above. However many more devices will potentially work, if their 
-product IDs are simply added in device-db.h and 99-vendor-reset.rules, to 
-deploy one of the four currently implemented reset strategies (POLARIS10, 
+Vendor-reset triggers only if your GPU's product ID matches the listed
+devices above. However many more devices will potentially work, if their
+product IDs are simply added in device-db.h and 99-vendor-reset.rules, to
+deploy one of the four currently implemented reset strategies (POLARIS10,
 VEGA10, VEGA20, NAVI10) in a trial and error process.
 
 Furthermore you can find some useful explanations in the amdgpu source files:
-* [amdgpu.h](https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/amd/amdgpu/amdgpu.h): enum amd_reset_method 
-* [amdgpu_drv.c](https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c): product ID -> chip type
+
+- [amdgpu.h](https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/amd/amdgpu/amdgpu.h): enum amd_reset_method
+- [amdgpu_drv.c](https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c): product ID -> chip type
 
 NAVI10 for example makes the most sense to try for iGPUs (integrated), and
 people have done this with success for various models (e.g. [Vega7/5600G](https://forum.proxmox.com/threads/amd-ryzen-5600g-igpu-code-43-error.138665/post-726791) ).
-
-
